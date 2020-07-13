@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.wrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    main {
+        flex: 1;
+        overflow: auto;
+
+        dl {
+            display: flex;
+            border-bottom: 1px solid #ccc;
+            padding: 10px;
+
+            dt {
+                img {
+                    width: 100px
+                }
+            }
+
+            dd {
+                padding-left: 10px;
+            }
+        }
+    }
+
+
+    footer {
+        height: 46px;
+        background: skyblue;
+        width: 100%;
+    }
+
+    header {
+        height: 46px;
+        background: skyblue;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding:0 10px;
+        align-items: center;
+    }
+}

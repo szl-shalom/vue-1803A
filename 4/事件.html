@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        .active {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button v-on:click="dialog">点我</button>
+        <div v-bind:class="{active:isActive}"></div>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                isActive: true
+            },
+            // 挂载方法
+            methods: {
+                dialog() {
+                    this.isActive = !this.isActive
+                }
+            },
+
+        })
+    </script>
+
+
+</body>
+
+</html>

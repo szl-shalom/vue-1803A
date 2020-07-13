@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1 :class="{active:isActive}">嘿嘿</h1>
+        <p v-if="0">哈哈</p>
+        <p v-else-if="0">哈哈11111</p>
+        <p v-else-if="true">哈222222</p>
+        <p v-else>呵呵</p>
+        <ul>
+            <li v-for="(item,index) in list" :key="index">{{ item }}</li>
+        </ul>
+    </div>
+
+    <script>
+        // 0 false "" undefind  NaN null
+        // 三个一起使用的时候  匹配任意为真结束  依次匹配
+        // v-if  
+        // v-else-if
+        // v-else 
+
+    
+        new Vue({
+            el: "#app",
+            data: {
+                message: "hellow Vue  !!!",
+                isActive: "false",
+                className: "active",
+                list: ["a", "b", "c"]
+            }
+        })
+    </script>
+</body>
+
+</html>

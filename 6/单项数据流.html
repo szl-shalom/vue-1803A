@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my-com :num="num" @fun="add"></my-com>
+    </div>
+    <script>
+        // 父子通信
+        // 使用自定属性 
+        // 使用props接受
+
+        // 子父通信
+        // 使用自定义事件
+        // 触发自定义事件$emit("事件名称")
+
+
+        Vue.component("my-com", {
+            template: `
+                <div>
+                    {{ num }}
+                    <button @click="$emit('fun')">点我+1</button>
+                </div>
+            `,
+            props: ["num"]
+        })
+        new Vue({
+            el: "#app",
+            data: {
+                num: 1,
+            },
+            methods: {
+                add() {
+                    this.num++;
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

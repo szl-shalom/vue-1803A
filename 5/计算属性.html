@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        firstName {{ firstName  }}
+        lastName {{ lastName  }}
+        fullName {{ fullName }}
+    </div>
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                firstName: "嘿嘿",
+                lastName: "呵呵"
+            },
+            computed: {
+                fullName: {
+                    get() {
+                        return this.firstName + " " + this.lastName
+                    },
+                    set(val) {
+                        // this.fullName = val
+                        this.firstName = val.split(" ")[0]
+                        this.lastName = val.split(" ")[1]
+                    }
+                }
+            },
+            watch: {
+                firstName() {
+                    console.log("firstName改变了")
+                }
+            },
+        })
+        // 1、监听属性 
+        // watch 监听属性
+        // 所监听的数据发生了改变就执行
+    </script>
+</body>
+
+</html>

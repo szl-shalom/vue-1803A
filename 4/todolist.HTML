@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>正在进行 {{ arr1.length }}</h1>
+        <ul>
+            <li v-for="(item,index) in arr1" :key="Math.random()">
+                <input type="checkbox" @click="go(index)">
+                <span>{{ item }}</span>
+                <b @click="arr1.splice(index,1)">X</b>
+            </li>
+        </ul>
+        <h1>已经完成 {{arr2.length}}</h1>
+
+        <ul>
+            <li v-for="(item,index) in arr2" :key="Math.random()">
+                <input type="checkbox" checked>
+                <span>{{ item }}</span>
+                <b @click="arr2.splice(index,1)">X</b>
+            </li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                arr1: ["item-1", "item-2"],
+                arr2: ["item-3", "item-4", "item-5"]
+            },
+            methods: {
+                go(index) {
+                    let res = this.arr1.splice(index, 1)
+                    this.arr2.push(res[0])
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

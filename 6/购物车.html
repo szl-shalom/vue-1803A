@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        table {
+            margin: auto;
+            width: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <span>全选</span>
+                        <input type="checkbox" v-model="allCheck">
+                    </th>
+                    <th>
+                        商品名称
+                    </th>
+                    <th>
+                        单价
+                    </th>
+                    <th>
+                        数量
+                    </th>
+                    <th>
+                        小计
+                    </th>
+                    <th>
+                        操作
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item,index) in list" :item="item" :index="index" :key="index" is="list-item" @del="del">
+                </tr>
+            </tbody>
+        </table>
+        <p>总价：{{allPrice  }}</p>
+    </div>
+
+    <script>
+        let random = (min, max) => Math.floor(Math.random() * (max - min) + min);
+        Vue.component("list-item", {
+            template: `
+             <tr>
+                    <td>
+                        <input type="checkbox" v-model="item.checked">
+                    </td>
+                    <td>
+                        {{ item.title }}
+                    </td>
+                    <td>
+                        {{ item.price }}
+                    </td>
+                    <td>
+                        <b @click="item.count>1 ? item.count-- :$emit('del',index) ">-</b>
+                        <input type="text" v-model="item.count">
+                        <b @click="item.count++">+</b>
+                    </td>
+                    <td>
+                        {{ item.price * item.count }}
+                    </td>
+                    <td>
+                        <b @click="$emit('del',index)">删除</b>
+                    </td>
+                </tr>
+            `,
+            props: ["item", "index"]
+        })
+
+
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                list: [{
+                    title: "华为" + random(100, 50000),
+                    price: random(100, 1000),
+                    count: random(2, 10),
+                    checked: true
+                }, {
+                    title: "华为" + random(100, 50000),
+                    price: random(100, 1000),
+                    count: random(2, 10),
+                    checked: true
+                }, {
+                    title: "华为" + random(100, 50000),
+                    price: random(100, 1000),
+                    count: random(2, 10),
+                    checked: true
+                }, {
+                    title: "华为" + random(100, 50000),
+                    price: random(100, 1000),
+                    count: random(2, 10),
+                    checked: true
+                }]
+            },
+            methods: {
+                del(index) {
+                    this.list.splice(index, 1)
+                }
+            },
+            computed: {
+                allCheck: {
+                    get() {
+                        return this.list.every(item => item.checked)
+                    },
+                    set(val) {
+                        this.list.forEach(item => item.checked = val)
+                    }
+                },
+                allPrice() {
+                    return this.list.reduce((p, n) => n.checked ? p + n.price * n.count : p, 0)
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

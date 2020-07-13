@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model.trim="num">
+        {{ typeof num  }}
+
+        <h1>1、input[type="text||password||eamil||tel"]</h1>
+        <input type="tel" v-model.lazy="mess">
+        <p>{{ mess }}</p>
+        <div></div>
+        <h1>input[type=radio]</h1>
+        <p>
+            <input type="radio" name="hobby" v-model="result" value="篮球"> 篮球
+            <input type="radio" name="hobby" v-model="result" value="排球"> 排球
+            <input type="radio" name="hobby" v-model="result" value="足球"> 足球
+        </p>
+        <p>{{ result }}</p>
+
+
+        <h1>input[type=checkbox]</h1>
+        <p>
+            <input type="checkbox" name="hobby" v-model="result1" value="篮球"> 篮球
+            <input type="checkbox" name="hobby" v-model="result1" value="排球"> 排球
+            <input type="checkbox" name="hobby" v-model="result1" value="足球"> 足球
+        </p>
+        <p>{{ result1 }}</p>
+
+        <h1>下拉菜单select</h1>
+
+        <select name="" id="" v-model="result2">
+            <option value="篮球">篮球</option>
+            <option value="足球">足球</option>
+            <option value="排球">排球</option>
+        </select>
+        <p>{{ result2 }}</p>
+    </div>
+    <script>
+        // 双向数据绑定   v-model 只能用在表单元素
+        // v-model="数据"
+
+        // 1.分类
+        //  input[type="text||password||eamil||tel"]  textarea
+        //  input[type="radio"]
+        //  input[type="checkbox"]
+        //  select
+        //  修饰符
+        //  lazy  事件input变成change
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                mess: "1",
+                result: "排球",
+                result1: ["足球"],
+                result2: "篮球",
+                num: ""
+            }
+        })
+    </script>
+</body>
+
+</html>

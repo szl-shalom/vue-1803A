@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        firstName {{ firstName  }}
+        lastName {{ lastName  }}
+        fullName {{ fullName }}
+    </div>
+    <script>
+        // 1、methods 就是普通的函数  没有区别
+        // 2、computed  计算属性
+        //    定义起来 像一个函数
+        //    用起来像  像一个属性
+        //    计算属性可以缓存数据  效率比较高
+        //    简写形式  计算属性不可以修改值  因为没有setter
+        //  拆开  
+        // {
+        // 当你获取计算属性的值的时候，会自动调用get
+        // get(){
+
+        // },
+        // 当你设置计算属性的值的时候，会自动调用set
+        // set(){
+
+        // }
+        // }
+
+        let vm = new Vue({
+            el: "#app",
+            // 数据
+            data: {
+                arr: [1, 2, 3, 4, 5],
+                firstName: "嘿嘿",
+                lastName: "呵呵"
+            },
+            // 方法
+            methods: {
+                // sum() {
+                //     console.log("方法执行了")
+                //     return this.arr.reduce((p, n) => p + n)
+                // }
+            },
+            //  计算属性
+            computed: {
+
+                // 简写
+                // num() {
+                //     console.log("计算属性执行了")
+                //     return this.arr.reduce((p, n) => p + n)
+                // }
+                // num: {
+                //     get() {
+                //         console.log("计算属性执行了")
+                //         return this.arr.reduce((p, n) => p + n)
+                //     },
+                //     set(val) {
+                //         console.log(val)
+                //     }
+                // }
+            },
+        })
+    </script>
+</body>
+
+</html>

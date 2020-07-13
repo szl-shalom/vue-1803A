@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=F, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div class="wrap">
+        <header><input type="text" placeholder="模糊搜索" v-model="val"></header>
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <th>商品名称</th>
+                        <th>数量</th>
+                        <th>单价</th>
+                        <th>小计</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item,index) in searchList">
+                        <td>
+                            {{ item.name }}
+                        </td>
+                        <td>
+                            <b @click="item.count--">-</b>
+                            <input type="text" v-model="item.count">
+                            <b @click="item.count++">+</b>
+                        </td>
+                        <td>
+                            {{ item.price }}
+                        </td>
+                        <td>
+                            {{ item.price * item.count }}
+                        </td>
+                        <td>
+                            <b @click="list.splice(index,1)">删除</b>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>总价：{{ allPrice }}</p>
+        </main>
+    </div>
+
+    <script>
+        new Vue({
+            el: ".wrap",
+            data: {
+                list: [{
+                    name: "小米1",
+                    price: 999,
+                    count: 6
+                }, {
+                    name: "小米2",
+                    price: 1399,
+                    count: 5
+                }, {
+                    name: "小米3",
+                    price: 1999,
+                    count: 3
+                }, {
+                    name: "小米4",
+                    price: 2399,
+                    count: 2
+                }],
+                val: "", //搜索的数据
+
+            },
+            computed: {
+                allPrice() {
+                    return this.searchList.reduce(function (prev, next) {
+                        return prev + next.price * next.count
+                    }, 0)
+                },
+                searchList() {
+                    return this.list.filter((item) => {
+                        return item.name.includes(this.val)
+                    })
+                }
+            },
+        })
+    </script>
+
+
+    <script>
+        // let arr = [{
+        //     age: 18
+        // }, {
+        //     age: 12
+        // }, {
+        //     age: 6
+        // }];
+        // // 传递一个参数
+        // // prev 代表数组第一项  next 代表第二项
+        // // prev  1     next  2
+        // // prev  3     next  3
+        // // prev  6     next  4
+        // // prev  10    next  5
+        // // 15 
+        // // 传递两个参数
+        // // prev 代表 第二个参数  next 代表第一项
+        // // prev 0    next  { age:18 }
+        // // prev 18   next  { age:12 }
+        // // prev 30   next { age:6 }
+        // // 36
+        // let res = arr.reduce(function (prev, next) {
+        //     return prev + next.age;
+        // }, 0)
+        // console.log(res)
+    </script>
+</body>
+
+</html>

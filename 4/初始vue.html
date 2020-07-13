@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            {{ message }}
+            {{ num + num1 }}
+            {{ flag ? "真" : "假"  }}
+        </div>
+    </div>
+    <script>
+        // 1、Vue是一个构造函数,也是对象 ,需要实例化
+        // 2、el : 挂载的节点 （vue语法和指令生效的范围）
+        // 3、data : 挂载的数据
+        // 4、模板指令 
+        //  v-text     innerText   简写  {{  js表达式 }}建议
+        //  v-html     innerHTML
+        //  v-model     
+        // 45
+        let vm = new Vue({
+            // 挂载的节点
+            el: "#app",
+            // 挂载的数据
+            data: {
+                message: "<b>hellow Vue !!</b>",
+                num: 1,
+                num1: 2,
+                flag: false
+            }
+        });
+        console.log(vm)
+    </script>
+</body>
+
+</html>

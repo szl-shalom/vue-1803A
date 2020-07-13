@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{ mess }}</h1>
+        <a v-bind:href="site">点我去百度</a>
+        <h1>对象 Class</h1>
+        <p v-bind:class="{active:isActive,active1:true}">嘿嘿</p>
+        <h1>数组 Class</h1>
+        <p v-bind:class="[className]">呵呵</p>
+        <h1>数组 + 对象 形式</h1>
+        <p v-bind:class="[className,{active1:true}]" class="qwe">嘿嘿+呵呵</p>
+        <hr>
+        <hr />
+        <div v-bind:style="styleObj"></div>
+    </div>
+    <script>
+        // v-bind:属性名 = 值
+        // 加强class 
+        // 1.写一个对象    对象的键名会作为类名 取决于后面的键值是否为真
+        // 2. 写一个数组   
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                mess: "class属性",
+                site: "https://www.baidu.com/",
+                className: "active",
+                isActive: false,
+                styleObj: {
+                    width: "500px",
+                    height: "500px",
+                    backgroundColor: "red"
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

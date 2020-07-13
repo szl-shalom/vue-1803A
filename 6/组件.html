@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my-button :mess="mess"></my-button>
+    </div>
+    <script>
+        // Vue组件基础
+        // Vue.component("组件名称",组件对象)
+        // 全局注册组件
+        // 1、注册的时候  小驼峰，大驼峰 连字符
+        // 2、使用的时候  连字符
+        // 组件内部 data必须是一个函数   函数返回出来一个对象
+        // 组件内部 template标签 必须有一个根节点
+
+        // 父子通信 
+        // 调用上 绑定自定义属性
+        // 组件内容使用 props 接受
+        Vue.component("my-button", {
+            // 模板
+            template: `
+                <div>
+                    <button @click="num++">{{ num }}</button>
+                    <h1>{{ result }}</h1>
+                    <p>{{ mess }}</p>
+                </div>
+                `,
+            data() {
+                return {
+                    num: 2
+                }
+            },
+            computed: {
+                result() {
+                    return this.num * this.num
+                }
+            },
+            props:["mess"]
+        })
+        new Vue({
+            el: "#app",
+            data:{
+                mess:"hellow 我是父组件"
+            }
+        })
+
+    </script>
+</body>
+
+</html>

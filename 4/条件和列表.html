@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button v-on:click="flag=!flag">点我</button>
+        <template v-if="flag">
+            <h1>嘿嘿</h1>
+            <h1>嘿嘿</h1>
+            <h1>嘿嘿</h1>
+            <h1>嘿嘿</h1>
+            <h1>嘿嘿</h1>
+        </template>
+        <h1>循环指令---数组</h1>
+        <ul>
+            <li v-for="(item,index) in arr">{{ item }}----{{ index }}<button
+                    v-on:click="arr.splice(index,1)">删除</button></li>
+        </ul>
+        <ul>
+            <li v-for="(item,index) in list">{{ item.name }}----{{ item.age }}</li>
+        </ul>
+        <h1>循环指令---对象</h1>
+        <ul>
+            <li v-for="(value,key) in obj">{{ key }} : {{ value }} </li>
+        </ul>
+        <h1>循环 + 多层</h1>
+        <ul>
+            <li v-for="(item,index) in listData">
+                {{ item.name }}
+                <ol>
+                    <li v-for="(item,index) in item.children">{{ item.name }}</li>
+                </ol>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        // 1.条件指令
+        // v-if="值"  值为真 正常渲染  值为假 不渲染
+        // v-show="值" 值为真  正常显示  值为假 不显示
+        // 2、循环语句
+        // v-for="(item,index) in 数组"  item代表数组每一项  index每一项所在的下表
+        // v-for="(value,key) in 对象"   value代表对象键值  key代表对象的键名
+
+        new Vue({
+            el: "#app",
+            data: {
+                flag: true,
+                arr: ["a", "b", "c", "d"],
+                list: [{
+                    name: "张三",
+                    age: 18
+                }, {
+                    name: "李四",
+                    age: 18
+                }, {
+                    name: "王五",
+                    age: 18
+                }],
+                obj: {
+                    name: "赵柳",
+                    age: 56,
+                    sex: "男",
+                    hobby: "学习"
+                },
+                listData: [{
+                    name: "河北省",
+                    children: [{
+                        name: "邯郸"
+                    }, {
+                        name: "国际庄"
+                    }]
+                }, {
+                    name: "山西",
+                    children: [{
+                        name: "临汾"
+                    }, {
+                        name: "运城"
+                    }, {
+                        name: "太远"
+                    }]
+                }]
+            },
+        })
+    </script>
+</body>
+
+</html>

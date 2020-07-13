@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        span {
+            display: inline-block;
+            padding: 10px;
+        }
+
+        span.active {
+            color: red
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <span v-for="(item,index) in arr" :class="{active:index===ind}"
+                v-on:click="ind=index">{{ item.title }}</span>
+        </div>
+        <ul>
+            <li v-for="(item,index) in arr[ind].persons">{{ item }}</li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                arr: [{
+                    title: "西游记",
+                    persons: ["唐僧", "孙悟空", "猪八戒"]
+                }, {
+                    title: "水浒传",
+                    persons: ["潘金莲", "西门庆"]
+                }, {
+                    title: "三国演义",
+                    persons: ["曹操", "刘备", "孙权"]
+                }, {
+                    title: "红楼梦",
+                    persons: ["贾宝玉", "林黛玉", "薛宝钗"]
+                }],
+                // 高亮下表
+                ind: 0
+            }
+        })
+    </script>
+</body>
+
+</html>
